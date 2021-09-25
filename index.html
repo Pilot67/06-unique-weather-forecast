@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Weather Forecast</title>
+    <!-- Load Bootstrap -->
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.1/css/bootstrap.min.css" 
+    integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Load FontAwesome -->
+    <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+    crossorigin="anonymous" />
+    <!-- Load Google font Opensans -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
+    <!-- Load jquery-UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/overcast/jquery-ui.min.css" integrity="sha512-uhRZ0EP8LWCnPThiGrXLSIuqg4O+jPVWASoEsaRXM7f20flrtyk6v3jET0HPg8XjmMZftNIQbl4AR2FMhoDQUw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+    <header>
+        <h1 class = "heading-lg text-center my-4 custom-header">Stuarts Unique Weather App</h1>        
+    </header>
+    <main class='container-flex'>
+        <div class='row'>
+            <!-- This is the LH search section -->
+            <section class='col col-sm-4 colg-3 p-3'>
+                <h5>City Search</h5>
+                <p>Enter the city name and country reference</p>
+                <form class='form-group'>
+                    <input id='ask' class = 'form-control' type='text' 
+                        placeholder='city name, country code' title='Enter the city name followed by a comma followed bt the 2 digit country code'>
+                    <p> <a class = 'btn btn-default btn-primary p-1 my-3 w-100'>Search</a></p>
+                </form>
+                <ul id="sortable">
+                        <li class="d-flex justify-content-between ui-state-default">
+                            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1
+                            <i class = 'btn btn-danger p-2 fas fa-minus-circle' data-listBtn='1'></i>
+                        </li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+                    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+                </ul>
+
+            </section>
+        </div>
+    </main>
+
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src = "./script.js"></script>
+
+</body>
+</html>
