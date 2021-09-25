@@ -1,7 +1,10 @@
 html,
 body {
     box-sizing: border-box;
-    overflow-x: hidden;
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    /* overflow-x: hidden; */
 }
 
 header {
@@ -28,7 +31,10 @@ header {
     border-radius: 1rem;
 }
 
-#sortable li span { position: absolute; margin-left: -1.3em; }
+#sortable li span { 
+    position: absolute; 
+    margin-left: -1.3em; 
+}
 
 form {
     border-bottom: 5px solid;
