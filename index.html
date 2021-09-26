@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unique Weather Forecast</title>
     <!-- Load Bootstrap -->
-    <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" 
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.1/css/bootstrap.min.css" 
     integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA==" 
@@ -17,12 +16,15 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
     crossorigin="anonymous" />
     <!-- Load Google font Opensans -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Load jquery-UI css-->
     <link rel="stylesheet" 
     href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/overcast/jquery-ui.min.css" 
     integrity="sha512-uhRZ0EP8LWCnPThiGrXLSIuqg4O+jPVWASoEsaRXM7f20flrtyk6v3jET0HPg8XjmMZftNIQbl4AR2FMhoDQUw==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     
 </head>
 
@@ -50,25 +52,26 @@
 
             </section>
 
-            <section class='col-12 col-lg-9 border'> 
-                <div id='todaysWeather' class='border' >
-                    <h5>Todays Weather</h5>
+            <section class='col-12 col-lg-9'> 
+                <div id='todaysWeather' class='my-3 mx-1' >
                 </div>
 
-                <div class='row px-2'>
-                    <div id='forcast0' class = 'col-sm border'>
+                <h3>5 day forecast</h3>
+                
+                <div id='forecastWrapper' class='d-flex flex-wrap '>
+                    <div id='forcast0' class = 'col-12 col-sm border'>
                         <h6>forecast day 0</h6>
                     </div>
-                    <div id='forcast0' class = 'col-sm border'>
+                    <div id='forcast0' class = 'col-12 col-sm border'>
                         <h6>forecast day 1</h6>
                     </div>
-                    <div id='forcast0' class = 'col-sm border'>
+                    <div id='forcast0' class = 'col-12 col-sm border'>
                         <h6>forecast day 2</h6>
                     </div>
-                    <div id='forcast0' class = 'col-sm border'>
+                    <div id='forcast0' class = 'col-12 col-sm border'>
                         <h6>forecast day 3</h6>
                     </div>
-                    <div id='forcast0' class = 'col-sm border'>
+                    <div id='forcast0' class = 'col-12 col-sm border'>
                         <h6>forecast day 4</h6>
                     </div>
 
