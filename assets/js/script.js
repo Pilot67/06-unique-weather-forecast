@@ -95,12 +95,12 @@ function printWeather(){
   var todayTitleEl = $('<h3>').attr({class:'p-2 m-0'}).text('Current weather for ' + weatherData.name + ' ' + weatherDate);
   var iconElSpan = $('<span>');
   var iconEl = $('<img>').attr({src:'http://openweathermap.org/img/wn/'+ weatherData.weather[0].icon + '@2x.png'});
-  var descEl = $('<h5>').attr({class:'p-2'}).text(weatherData.weather[0].description);
-  var tempEl = $('<h5>').attr({class:'p-2'}).text('Temperature ' + weatherData.main.temp + "\xB0C");
-  var windEl = $('<h5>').attr({class:'p-2'}).text('Wind speed ' + weatherData.wind.speed + " km/h")
-  var humidityEl = $('<h5>').attr({class:'p-2'}).text('Humidity ' + weatherData.main.humidity + "%")
+  var descEl = $('<h5>').attr({class:'p-2'}).text('Weather: '+weatherData.weather[0].description);
+  var tempEl = $('<h5>').attr({class:'p-2'}).text('Temperature: ' + weatherData.main.temp + "\xB0C");
+  var windEl = $('<h5>').attr({class:'p-2'}).text('Wind speed: ' + weatherData.wind.speed + " km/h")
+  var humidityEl = $('<h5>').attr({class:'p-2'}).text('Humidity: ' + weatherData.main.humidity + "%")
   var uviEl = $('<h5>').attr({class:'p-2'})
-  var uviElSpan = $('<span>').attr({class:'px-2 rounded', style:'color:'+bgArr[uvArrIndex].textCol + ';background-color:'+bgArr[uvArrIndex].color}).text('UV Index ' + uvIndex+' '+bgArr[uvArrIndex].warn);
+  var uviElSpan = $('<span>').attr({class:'px-2 rounded', style:'color:'+bgArr[uvArrIndex].textCol + ';background-color:'+bgArr[uvArrIndex].color}).text('UV Index: ' + uvIndex+' '+bgArr[uvArrIndex].warn);
   uviEl.append(uviElSpan);
   iconElSpan.append(iconEl);
   todayTitleEl.append(iconElSpan);
