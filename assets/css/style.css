@@ -1,3 +1,8 @@
+:root {
+    --heading:#007890;
+    --results:#87cac5;
+    --pageBackground:#e1ddcb;
+}
 html,
 body {
     box-sizing: border-box;
@@ -11,11 +16,18 @@ body {
     /* Set body font and text size */
     font-family: 'Open Sans', sans-serif;
     line-height: 1.25;
+    background-color: var(--pageBackground)
 }
 
 
 header {
-    background-color: darkslategray;
+    background-color: var(--heading);
+}
+
+.custom-header {
+        color: var(--pageBackground);
+        text-shadow: 2px 2px 6px darkslategray;
+        box-shadow: 0px 0px 5px 1px darkslategray;
 }
 
 #sortable {
@@ -33,6 +45,7 @@ header {
     height: 2.5rem;
     border-radius: 1rem;
     cursor:pointer;
+    color: var(--heading);
 }
 #sortable li i {
     font-size: 1rem;
@@ -43,6 +56,9 @@ header {
     position: absolute; 
     margin-left: -1.3em; 
 }
+#sortable li:hover {
+    transform: translateX(-1px) translateY(-1px);
+}
 
 form {
     border-bottom: 5px solid;
@@ -50,21 +66,20 @@ form {
 }
 
 #todaysWeather {
-    border: 0px solid black;
-    box-shadow: 0 0 5px 5px darkslategray;
-    background-color:#9ed3d4;
+    box-shadow: 0px 0px 8px 4px darkslategray;
+    background-color: var(--results);
 
 }
 
 #forecastWrapper div {
     box-shadow: 0 0 4px 1px darkslategray;
-    background-color:#9ed3d4;
+    background-color:var(--results);
 }
 .loader {
     margin: 0 auto;
     border: 8px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 8px solid #3498db;
+    border-top: 8px solid var(--heading);
     width: 60px;
     height: 60px;
     -webkit-animation: spin 2s linear infinite; /* Safari */
