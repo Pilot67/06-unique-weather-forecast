@@ -1,13 +1,17 @@
-var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=melbourne,au&units=metric';
-var onecallUrl = 'http://api.openweathermap.org/data/2.5/onecall?lat=-34.9333&lon=138.6';
+var weatherUrl;// = 'https://api.openweathermap.org/data/2.5/weather?q=melbourne,au&units=metric';
+var onecallUrl;// = 'http://api.openweathermap.org/data/2.5/onecall?lat=-34.9333&lon=138.6';
 var appId = '&APPID=4cab6e04384fe42206d2408288ba4120'
-var defaultCountry = 'AU'
 var searchStr;
 var weatherData;
 var forecastData;
 
-function getWeather(addToList){
-fetch(weatherUrl+appId)
+
+// Fetch the current weather from a city
+function getWeather(addToList){ 
+    //clear the screen and activate the loader..
+  searchWait();
+
+  fetch(weatherUrl+appId)
   .then(function (response) {
     return response.json();
   })
@@ -27,8 +31,7 @@ fetch(weatherUrl+appId)
     }
   })
   .catch(function (error){
-    // add code for wron city
-    console.log(error)
+    printError(error);// add code for wron city
   })
   .then(function(data){
       //setup and call OneCall
@@ -37,7 +40,8 @@ fetch(weatherUrl+appId)
   })
 
 }
- 
+
+// Fetch the OneCall weather data after receiving the Weather
 function getOneCallData(oneCallUrl){
   //Fetch onecall
   fetch(oneCallUrl+appId)
@@ -49,17 +53,46 @@ function getOneCallData(oneCallUrl){
     printWeather();
   });
 }
+// Display the error if required
+function printError(error){
+  $('#results').text('');
+  $('#results').append($('<h3>').attr({class:'text-center my-5 text-danger'}).text('Oops, that city was not found'));
+  $('#results').append($('<h5>').attr({class:'text-center my-5'}).text('Check spelling and try again'));
+  $('#ask').val('');
+}
 
+//Claer all of the search boxes. activate loader if 'loader' true;
+function searchWait(){
+    $('#results').text('');
+    $('#results').append($('<h3>').attr({class:'text-center my-5'}).text('Searching for ' + searchStr));
+    $('#results').append($('<div>').attr({class:'loader'}));
+}
+//Print the weather to the screen after it has been fetched.
 function printWeather(){
   //this function prints the current and forecast weather to the screen
-  $('#todaysWeather').text(""); //clear the children
-  console.log(weatherData);
-  console.log(forecastData);
+  //bgArr is for the UV index colours
+  var bgArr = [
+    {textCol: 'black', color:'green',rangeHigh:3, warn:'Low'}, 
+    {textCol: 'black',color:'yellow', rangeHigh:6, warn:'Medium' }, 
+    {textCol: 'black',color:'darkorange',rangeHigh:8, warn:'High'},
+    {textCol: 'white',color:'red',rangeHigh:11, warn:'Very High'},
+    {textCol: 'white',color:'purple',rangeHigh:12, warn:'Extreme'},
+  ]
+  var uvIndex = forecastData.current.uvi;
+  var uvArrIndex=4; //default UV array index value (extreme)
+  for (var i = 0;i < 4; i++){
+    if (uvIndex < bgArr[i].rangeHigh) { 
+      var uvArrIndex=i;
+      i = 4;
+    }
+  }
 
-  var bgArr = ['green', 'yellow', 'darkorange','red', 'purple']
-
+   $('#results').text(''); //Clear the results section
+  var todaysWeather = $('<div>').attr({class:'my-3 mx-1',id:'todaysWeather'});
+  var forecastWrapper = $('<div>').attr({class:'d-flex flex-wrap',id:'forecastWrapper'});
+  //get the time and time offset
   var weatherDate = moment.unix(weatherData.dt).utc().utcOffset(weatherData.timezone/60).format('D-M-YYYY');
-  var todayTitleEl = $('<h3>').attr({class:'p-2'}).text('Current weather for ' + weatherData.name + ' ' + weatherDate);
+  var todayTitleEl = $('<h3>').attr({class:'p-2 m-0'}).text('Current weather for ' + weatherData.name + ' ' + weatherDate);
   var iconElSpan = $('<span>');
   var iconEl = $('<img>').attr({src:'http://openweathermap.org/img/wn/'+ weatherData.weather[0].icon + '@2x.png'});
   var descEl = $('<h5>').attr({class:'p-2'}).text(weatherData.weather[0].description);
@@ -67,17 +100,17 @@ function printWeather(){
   var windEl = $('<h5>').attr({class:'p-2'}).text('Wind speed ' + weatherData.wind.speed + " km/h")
   var humidityEl = $('<h5>').attr({class:'p-2'}).text('Humidity ' + weatherData.main.humidity + "%")
   var uviEl = $('<h5>').attr({class:'p-2'})
-  var uviElSpan = $('<span>').attr({class:'px-2 rounded'}).css('background-color',bgArr[Math.round((forecastData.current.uvi-1)/2.8)],).text('UV Index ' + forecastData.current.uvi)
+  var uviElSpan = $('<span>').attr({class:'px-2 rounded', style:'color:'+bgArr[uvArrIndex].textCol + ';background-color:'+bgArr[uvArrIndex].color}).text('UV Index ' + uvIndex+' '+bgArr[uvArrIndex].warn);
   uviEl.append(uviElSpan);
   iconElSpan.append(iconEl);
   todayTitleEl.append(iconElSpan);
   
-  $('#todaysWeather').append(todayTitleEl);
-  $('#todaysWeather').append(descEl);
-  $('#todaysWeather').append(tempEl);
-  $('#todaysWeather').append(windEl);
-  $('#todaysWeather').append(humidityEl);
-  $('#todaysWeather').append(uviEl);
+  todaysWeather.append(todayTitleEl);
+  todaysWeather.append(descEl);
+  todaysWeather.append(tempEl);
+  todaysWeather.append(windEl);
+  todaysWeather.append(humidityEl);
+  todaysWeather.append(uviEl);
 
   // 5 day forecast
   $('#forecastWrapper').text('') // clear the wrapper
@@ -92,7 +125,6 @@ function printWeather(){
     var tempMaxEl =$('<p>').text('Max: ' + Math.round(forecastData.daily[i].temp.max)+ "\xB0C");
     windEl =$('<p>').text('Wind: ' + forecastData.daily[i].wind_speed + 'km/h');
     humidityEl = $('<p>').text('Humidity: ' + forecastData.daily[i].humidity+'%')
-
     day.append(dateEl);
     day.append(iconEl);
     day.append(descEl);
@@ -100,12 +132,13 @@ function printWeather(){
     day.append(tempMaxEl);
     day.append(windEl);
     day.append(humidityEl);
-
-    $('#forecastWrapper').append(day);
-
+    forecastWrapper.append(day);
   }
+  $('#results').append(todaysWeather);
+  $('#results').append($('<h5>').text('5 Day Forecast'));
+  $('#results').append(forecastWrapper);
 }
-
+//Add a new item to the sortable list
 function addSearch(itemText){
   newLineEl = $('<li>').attr({class:'d-flex justify-content-between ui-state-default'}).text(itemText);
   newLineEl.append($('<span>').attr({class:'ui-icon ui-icon-arrowthick-2-n-s'}));
@@ -113,7 +146,7 @@ function addSearch(itemText){
   $('#sortable').append(newLineEl);
   $('#ask').val("");
 }
-
+//Save the sortabel list to local storage
 function saveList(){
   var listArr = [];
     for (var i = 0; i < $('#sortable li').length; i++){
@@ -121,7 +154,7 @@ function saveList(){
     }
   localStorage.setItem('CityList', JSON.stringify(listArr));
 }
-
+//Load the sortable list from local Storage
 function loadList(){
   $('#sortable').text(''); //clear the sortable list
   var listArr = JSON.parse(localStorage.getItem('CityList')) //get the data from local storage
@@ -131,16 +164,13 @@ function loadList(){
     }
   }
 }
-
-loadList();
-
-
 // remove item from the sortable list
 $('#sortable').on('click', 'i', function(event){
     $(event.target).parent().remove()
     saveList();
 })
 
+//Check if there was a click event on the sortable list
 $('#sortable').on('click', 'li', function(event){
   if (!$(event.target).is('li')){
     return
@@ -149,10 +179,7 @@ $('#sortable').on('click', 'li', function(event){
   weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='+searchStr+'&units=metric';
   getWeather(false);
 })
-
-
-
-
+// Search button was clicked
 $('.form-group').on('submit', function(event){
   event.preventDefault();
   if (!$('#ask').val().trim()){
@@ -163,13 +190,15 @@ $('.form-group').on('submit', function(event){
   weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q='+searchStr+'&units=metric';
   getWeather(true);
 })
-
-
-$( "#sortable" ).on('click', saveList());
-
 // function for jquery-ui tooltip
 $( function() {
     $('#ask').tooltip();
+    $("#ask").tooltip({
+      position: {
+        my: "center bottom",
+        at: "right top"
+      }
+    });
 });
 // function for jquery-ui sortable list
 $( function() {
@@ -178,3 +207,6 @@ $( function() {
   $( "#sortable" ).sortable({update: function(event, ui) {saveList()}});
   $( "#sortable" ).disableSelection();
 });
+
+//Initial load of sortable list
+loadList(); 
