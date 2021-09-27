@@ -10,7 +10,7 @@ body {
 body {
     /* Set body font and text size */
     font-family: 'Open Sans', sans-serif;
-    line-height: 1.5;
+    line-height: 1.25;
 }
 
 
@@ -52,8 +52,11 @@ form {
 #todaysWeather {
     border: 0px solid black;
     box-shadow: 0 0 5px 5px darkslategray;
+    background-color:#9ed3d4;
+
 }
 
 #forecastWrapper div {
     box-shadow: 0 0 7px 2px darkslategray;
+    background-color:#9ed3d4;
 }
