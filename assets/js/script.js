@@ -35,7 +35,7 @@ function getWeather(addToList){
   })
   .then(function(data){
       //setup and call OneCall
-      var oneCallUrl = 'http://api.openweathermap.org/data/2.5/onecall?lat='+data.coord.lat+'&lon='+data.coord.lon+'&units=metric';
+      var oneCallUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+data.coord.lat+'&lon='+data.coord.lon+'&units=metric';
       getOneCallData(oneCallUrl);
   })
 
