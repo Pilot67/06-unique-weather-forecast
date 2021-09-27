@@ -94,7 +94,7 @@ function printWeather(){
   var weatherDate = moment.unix(weatherData.dt).utc().utcOffset(weatherData.timezone/60).format('D-M-YYYY');
   var todayTitleEl = $('<h3>').attr({class:'p-2 m-0'}).text('Current weather for ' + weatherData.name + ' ' + weatherDate);
   var iconElSpan = $('<span>');
-  var iconEl = $('<img>').attr({src:'http://openweathermap.org/img/wn/'+ weatherData.weather[0].icon + '@2x.png'});
+  var iconEl = $('<img>').attr({src:'https://openweathermap.org/img/wn/'+ weatherData.weather[0].icon + '@2x.png'});
   var descEl = $('<h5>').attr({class:'p-2'}).text('Weather: '+weatherData.weather[0].description);
   var tempEl = $('<h5>').attr({class:'p-2'}).text('Temperature: ' + weatherData.main.temp + "\xB0C");
   var windEl = $('<h5>').attr({class:'p-2'}).text('Wind speed: ' + weatherData.wind.speed + " km/h")
@@ -118,7 +118,7 @@ function printWeather(){
     weatherDate = moment.unix(forecastData.daily[i].dt).utc().utcOffset(weatherData.timezone/60).format('D-M-YYYY');
     var day = $('<div>').attr({class:'col-12 col-md border m-1 p-1'});
     var dateEl = $('<h5>').attr({class:'text-center'}).text(weatherDate);
-    var iconElUrl = 'http://openweathermap.org/img/wn/' + forecastData.daily[i].weather[0].icon + '.png';
+    var iconElUrl = 'https://openweathermap.org/img/wn/' + forecastData.daily[i].weather[0].icon + '.png';
     iconEl = $('<img>').attr({src:iconElUrl,id:'forecastIcon', class:'justify-content-center'});
     descEl = $('<p>').text(forecastData.daily[i].weather[0].description);
     var tempMinEl =$('<p>').text('Min: ' + Math.round(forecastData.daily[i].temp.min)+ "\xB0C");
