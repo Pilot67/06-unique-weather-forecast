@@ -141,7 +141,7 @@ function printWeather(){
 function addSearch(itemText){
   newLineEl = $('<li>').attr({class:'d-flex justify-content-between ui-state-default'}).text(itemText);
   newLineEl.append($('<span>').attr({class:'ui-icon ui-icon-arrowthick-2-n-s'}));
-  newLineEl.append($('<i>').attr({class:'btn btn-danger p-1 fas fa-trash-alt',type:'button'}));
+  newLineEl.append($('<i>').attr({class:'btn btn-danger p-1 far fa-trash-alt',type:'button'}));
   $('#sortable').append(newLineEl);
   $('#ask').val("");
 }
