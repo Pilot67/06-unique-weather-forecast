@@ -22,7 +22,7 @@ body {
 
 header {
     background-image: linear-gradient(#0508359c,var(--heading), #08060c8a),
-        url('../images/lightning-background.png');
+        url('../../assets/images/lightning-background.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
