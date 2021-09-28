@@ -95,7 +95,7 @@ function printWeather(){
   var todayTitleEl = $('<h3>').attr({class:'p-2 m-0'}).text('Current weather for ' + weatherData.name + ' ' + weatherDate);
   var iconElSpan = $('<span>');
   var iconEl = $('<img>').attr({src:'https://openweathermap.org/img/wn/'+ weatherData.weather[0].icon + '@2x.png'});
-  var descEl = $('<h5>').attr({class:'p-2'}).text('Weather: '+weatherData.weather[0].description);
+  var descEl = $('<h5>').attr({class:'p-2'}).text('Weather: ' + capitalise(weatherData.weather[0].description));
   var tempEl = $('<h5>').attr({class:'p-2'}).text('Temperature: ' + weatherData.main.temp + "\xB0C");
   var windEl = $('<h5>').attr({class:'p-2'}).text('Wind speed: ' + weatherData.wind.speed + " km/h")
   var humidityEl = $('<h5>').attr({class:'p-2'}).text('Humidity: ' + weatherData.main.humidity + "%")
@@ -104,7 +104,6 @@ function printWeather(){
   uviEl.append(uviElSpan);
   iconElSpan.append(iconEl);
   todayTitleEl.append(iconElSpan);
-  
   todaysWeather.append(todayTitleEl);
   todaysWeather.append(descEl);
   todaysWeather.append(tempEl);
@@ -120,7 +119,7 @@ function printWeather(){
     var dateEl = $('<h5>').attr({class:'text-center'}).text(weatherDate);
     var iconElUrl = 'https://openweathermap.org/img/wn/' + forecastData.daily[i].weather[0].icon + '.png';
     iconEl = $('<img>').attr({src:iconElUrl,id:'forecastIcon', class:'justify-content-center'});
-    descEl = $('<p>').text(forecastData.daily[i].weather[0].description);
+    descEl = $('<p>').text(capitalise(forecastData.daily[i].weather[0].description));
     var tempMinEl =$('<p>').text('Min: ' + Math.round(forecastData.daily[i].temp.min)+ "\xB0C");
     var tempMaxEl =$('<p>').text('Max: ' + Math.round(forecastData.daily[i].temp.max)+ "\xB0C");
     windEl =$('<p>').text('Wind: ' + forecastData.daily[i].wind_speed + 'km/h');
@@ -164,6 +163,12 @@ function loadList(){
     }
   }
 }
+//Capitalise the weather
+function capitalise(string){
+  string = string.replace(/\b\w/g, function(j){return j.toUpperCase()});
+  return string;
+}
+
 // remove item from the sortable list
 $('#sortable').on('click', 'i', function(event){
     $(event.target).parent().remove()
