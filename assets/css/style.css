@@ -22,7 +22,7 @@ body {
 
 header {
     background-image: linear-gradient(#121438,var(--heading), #130a25),
-    url("../../assets/css/lightning-background.png");
+    url("https://pilot67.github.io/06-unique-weather-forecast/assets/css/lightning-background.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
