@@ -74,12 +74,14 @@ form {
 #todaysWeather {
     box-shadow: 0px 0px 8px 4px darkslategray;
     background-color: var(--results);
+    border-radius: .5rem;
 
 }
 
 #forecastWrapper div {
     box-shadow: 0 0 4px 1px darkslategray;
     background-color:var(--results);
+    border-radius: .5rem;
 }
 .loader {
     margin: 0 auto;

@@ -86,8 +86,7 @@ function printWeather(){
       i = 4;
     }
   }
-
-   $('#results').text(''); //Clear the results section
+  $('#results').text(''); //Clear the results section
   var todaysWeather = $('<div>').attr({class:'my-3 mx-1',id:'todaysWeather'});
   var forecastWrapper = $('<div>').attr({class:'d-flex flex-wrap',id:'forecastWrapper'});
   //get the time and time offset
@@ -110,7 +109,6 @@ function printWeather(){
   todaysWeather.append(windEl);
   todaysWeather.append(humidityEl);
   todaysWeather.append(uviEl);
-
   // 5 day forecast
   $('#forecastWrapper').text('') // clear the wrapper
   for (var i = 1; i < 6; i++){
